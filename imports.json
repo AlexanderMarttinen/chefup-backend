@@ -1,0 +1,5 @@
+{
+    "imports": {
+      "openai": "https://cdn.jsdelivr.net/npm/openai@4.12.1/index.min.js"
+    }
+  }

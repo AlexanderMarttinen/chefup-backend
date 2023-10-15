@@ -1,5 +1,12 @@
 [build]
-    functions="functions"
+    publish="/public"
+
+[[edge_functions]]
+    path="/hello"
+    function="hello"
+    
+[functions]
+    deno_import_map = "./imports.json"
 
 [[redirects]]
     to="/.netlify/functions/api/:splat"
