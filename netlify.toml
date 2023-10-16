@@ -2,8 +2,8 @@
     publish="/public"
 
 [[edge_functions]]
-    path="/hello"
-    function="hello"
+    path="/createRecipe"
+    function="createRecipe"
     
 [functions]
     deno_import_map = "./imports.json"
@@ -12,3 +12,9 @@
     to="/.netlify/functions/api/:splat"
     from="/*"
     status=200
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
