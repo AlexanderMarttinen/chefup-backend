@@ -7,10 +7,12 @@ export default async (req, context) => {
       // this might be an API call or other slow external operation
       try {
         const body = await req.json();
-       // console.log(body.recipe);
+       
+       
 
         const openAI = new OpenAI(
-          "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"
+          //OPEN_AI_API_KEY
+          Deno.env.get("OPEN_AI_API_KEY")
         );
 
         const chatCompletion = await openAI.createChatCompletionStream(
@@ -43,6 +45,7 @@ export default async (req, context) => {
           },
           (chunk) => {
             controller.enqueue(encoder.encode(chunk.choices[0]?.delta.content));
+            console.log(chunk.choices[0]?.delta.content);
             if(chunk.choices[0]?.finish_reason==='stop'){
               controller.close();
             }
@@ -65,9 +68,7 @@ export default async (req, context) => {
 
   //const openai = new OpenAI({ apiKey: Deno.env.get("OPENAI_API_KEY") });
 
-  const openAI = new OpenAI(
-    "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"
-  );
+ 
   // const resp = await new OpenAI().c
   const chatCompletion = await openAI.createChatCompletion({
     model: "gpt-3.5-turbo",
